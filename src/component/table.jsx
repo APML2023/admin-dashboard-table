@@ -9,7 +9,7 @@ const Table = () => {
     const [open, setOpen] = React.useState(false);
 
     useEffect(()=>{
-        axios.get("http://localhost:3001/employers")
+        axios.get("https://chatwithpdf.in/employers")
         .then((res) =>{
           setEmployers(res?.data?.data)
           console.log(res.data)
