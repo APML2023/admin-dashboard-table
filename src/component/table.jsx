@@ -16,6 +16,7 @@ const Table = () => {
         })
         .catch((err) =>{console.log(err);})
     }, [])
+    
   
     const handleClose = () => {
       setOpen(false);
@@ -53,7 +54,7 @@ const Table = () => {
                 <td>{val?.regionName}</td>
                 <td>{val?.language} </td>
                 <td >{val?.emp_count}</td>
-                <td><button onClick={() =>{handleEmployee(index)}}>Click</button></td>
+                <td><button className='button' onClick={() =>{handleEmployee(index)}}>Click</button></td>
             </tr>
             </>
         )

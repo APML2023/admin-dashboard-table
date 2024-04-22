@@ -55,7 +55,7 @@ table td:last-child {
   line-height: 1.4;
   text-align: left;
 }
-button{
+.button{
   width: 70px;
   padding: 4px;
   background: #2b686e;

@@ -15,16 +15,49 @@ const EmployeeTable = ({selectedRow,}) => {
         }
     }, [selectedRow])
 
+    const timeDiff = (timestamp) => {
+      const currentTime = new Date();
+      const previousTime = new Date(timestamp);
+  
+      const timeDifference = currentTime.getTime() - previousTime.getTime();
+      const seconds = Math.floor(timeDifference / 1000);
+  
+      let interval = Math.floor(seconds / 31536000);
+  
+      if (interval > 1) {
+          return `${interval} years ago`;
+      }
+      interval = Math.floor(seconds / 2592000);
+      if (interval > 1) {
+          return `${interval} months ago`;
+      }
+      interval = Math.floor(seconds / 86400);
+      if (interval > 1) {
+          return `${interval} days ago`;
+      }
+      // interval = Math.floor(seconds / 3600);
+      // if (interval > 1) {
+      //     return `${interval} hours ago`;
+      // }
+      // interval = Math.floor(seconds / 60);
+      // if (interval > 1) {
+      //     return `${interval} minutes ago`;
+      // }
+      return previousTime.toLocaleDateString("en-GB");
+  };
 
   return (
     <div class="table-users">
    <div class="header" >
     <span>{employee.length}</span>
     {employee[0]?.companyName} </div>
+    <div>
+    </div>
 
    <table cellspacing="0">
       <tr className='table-head'>
          <th>Name</th>
+         <th>Last CheckIn </th>
          <th>Phone</th>
          <th>Company</th>
          <th>County</th>
@@ -37,6 +70,7 @@ const EmployeeTable = ({selectedRow,}) => {
             <>
             <tr key={index}>
                 <td>{val?.employeeName}</td>
+                <td>{val?.lastAttendance ? timeDiff(new Date(val?.lastAttendance).getTime()) : "No Entry"}</td>
                 <td>{val?.employeeNumber}</td>
                 <td>{val?.companyName}</td>
                 <td>{val?.countryName} </td>
