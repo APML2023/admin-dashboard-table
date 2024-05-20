@@ -6,7 +6,7 @@ const EmployeeTable = ({selectedRow,}) => {
 
       useEffect(()=>{
         if(selectedRow && selectedRow._id){
-          axios.get("https://chatwithpdf.in/employees/"+selectedRow._id)
+          axios.get("http://localhost:3001/employees/"+selectedRow._id)
           .then((res) =>{
             setEmployee(res?.data?.data)
             console.log(res.data)

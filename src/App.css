@@ -12,6 +12,7 @@ body * {
   text-align: center;
   color: white;
   font-size: 1.5em;
+  width: 100%;
   padding: 1rem;
   text-align: center;
   text-transform: uppercase;
@@ -131,6 +132,30 @@ table tr:nth-child(2n+1) {
     display: none;
   }
 }
+
+.admin-button{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+button{
+  font-size: 20px;
+  background-color: #daeff1;
+  width: 200px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #2b686e;
+  &:hover{
+    background-color: #327a81;
+    color: white;
+  }
+}
+.admin-button button span{
+  color: #6cbec6;
+  text-shadow: 1px 1px 1px #6cbec6;
+}
 @media screen and (max-width: 500px) {
   .header {
     background-color: transparent;
@@ -188,3 +213,4 @@ table tr:nth-child(2n+1) {
     overflow: visible;
   }
 }
+
