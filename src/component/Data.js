@@ -59,6 +59,33 @@ export const MVRS = [
     { heading: "Updated At", value: "updatedAt" }
   ];
 
+export const MVRSFilter = [
+  {
+    name: "Phone", 
+     key: "recipientPhone",
+     val: null,
+     type: "number"
+  },
+  {
+    name: "Shop", 
+    key: "shopName",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "Ann/Unann", 
+    key: "announcedUnAnnounced",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "Temp", 
+    key: "shelvesTemperature",
+    val: null,
+    type: "number"
+  }
+]
+
 export const KOCS = [
     { heading: "Full Form of BOE and LSM", value: "fullFormOfBoeandLSM" },
     { heading: "Impact of BOE and LSM", value: "impactOfBoeAndLsm" },
@@ -82,6 +109,15 @@ export const KOCS = [
     { heading: "Created At", value: "createdAt" },
     { heading: "Updated At", value: "updatedAt" }
   ]
+
+export const KOCSFilter = [
+  {
+    name: "Trainee", 
+    key: "traineeName",
+    val: null,
+    type: "string"
+  }
+]
 
   export const HSOS = [
     { heading: "Trainee Name", value: "traineeName" },
@@ -112,6 +148,15 @@ export const KOCS = [
     { heading: "Updated At", value: "updatedAt" }
   ]
 
+export const HSOSFilter = [
+  {
+    name: "Trainee", 
+    key: "traineeName",
+    val: null,
+    type: "string"
+  }
+]
+
   export const HOCS = [
     { heading: "Define Clean and Sanitize", value: "defineCleanAndSanitize" },
     { heading: "Dos and Don'ts Handling Trash", value: "dosAndDontsHandlingTrash" },
@@ -135,3 +180,20 @@ export const KOCS = [
     { heading: "Updated At", value: "updatedAt" }
   ]
   
+  
+  export const BranchFilter = [
+    {
+      name: "Name", 
+      key: "weakness",
+      val: null,
+      type: "string"
+    }
+  ]
+  // export const HOCSFilter = [
+  //   {
+  //     name: "Weakness", 
+  //     key: "weakness",
+  //     val: null,
+  //     type: "string"
+  //   }
+  // ]

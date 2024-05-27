@@ -3,19 +3,42 @@ import axios from 'axios';
 import EmployeeTable from './employeeTable';
 import Modal from './modal';
 import ReusableTable from './ReusableTable';
-import { HOCS, HSOS, KOCS, MVRS } from './Data';
+import { HOCS, HSOS, KOCS, MVRS, HSOSFilter, KOCSFilter, MVRSFilter } from './Data';
+import SideBar from './SideBar';
 
 const Table = () => {
   const [employers, setEmployers] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
   const [open, setOpen] = useState(false);
   const [currentTableData, setCurrentTableData] = useState([]);
+  const [currentTableDataFiltered, setcurrentTableDataFiltered] = useState([]);
   const [modalType, setModalType] = useState(null);
   const [currentColumns, setCurrentColumns] = useState([]);
   const [tableTitle, setTableTitle] = useState("");
+  const [Filter, setMvrFilter] = useState([]);
+
+  const dynamicFilter= (d, filterAns) => {
+    let data = d;
+    for(let i = 0; i < filterAns.length; i++) {
+        data = data.filter((val) =>{
+            if(filterAns[i] == null || filterAns[i] == undefined || filterAns[i].val == null || filterAns[i].val == undefined) return true;
+
+            if(filterAns[i].type == "number") {
+                return val[filterAns[i].key] == filterAns[i].val; 
+            }
+            
+            if(filterAns[i].type == "string"){
+                return val[filterAns[i].key].toLowerCase().includes(filterAns[i].val.toLowerCase())
+            }
+            return true;
+        })
+    }
+    
+    return data;
+  }
 
   useEffect(() => {
-    axios.get("http://localhost:3001/employers")
+    axios.get("https://chatwithpdf.in/rnb_callbackurl/employers")
       .then((res) => {
         const employersData = res?.data?.data;
         setEmployers(employersData);
@@ -52,75 +75,75 @@ const Table = () => {
     setOpen(true);
   };
 
+  useEffect(()=> {
+    setcurrentTableDataFiltered(dynamicFilter(currentTableData, Filter))
+  }, [Filter, currentTableData])
 
-  const handleViewMVRS = () => {
-    axios.get("http://localhost:3001/mvrs")
-      .then((res) => {
-        setCurrentTableData(res.data.data);
-        setCurrentColumns(MVRS);
-        setTableTitle("MVRS");
-        setModalType('table');
-        setOpen(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleViewMVRS = async () => {
+     try {
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/mvrs");
+      setCurrentTableData(res.data.data);
+      setMvrFilter(MVRSFilter);
+      setCurrentColumns(MVRS);
+      setTableTitle("MVRS");
+      setModalType('table');
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleViewKOCS = () => {
-    axios.get("http://localhost:3001/kocs")
-      .then((res) => {
-        setCurrentTableData(res.data.data);
-        setCurrentColumns(KOCS);
-        setTableTitle("KOCS");
-        setModalType('table');
-        setOpen(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleViewKOCS = async () => {
+     try {
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/kocs");
+      setCurrentTableData(res.data.data);
+      setMvrFilter(KOCSFilter);
+      setCurrentColumns(KOCS);
+      setTableTitle("KOCS");
+      setModalType('table');
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleViewHSOS = () => {
-    axios.get("http://localhost:3001/hsos")
-      .then((res) => {
-        setCurrentTableData(res.data.data);
-        setCurrentColumns(HSOS);
-        setTableTitle("HSOS");
-        setModalType('table');
-        setOpen(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleViewHSOS = async () => {
+     try {
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/hsos");
+      setCurrentTableData(res.data.data);
+      setMvrFilter(HSOSFilter);
+      setCurrentColumns(HSOS);
+      setTableTitle("HSOS");
+      setModalType('table');
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleViewHOCS = () => {
-    axios.get("http://localhost:3001/hocs")
-      .then((res) => {
-        setCurrentTableData(res.data.data);
-        setCurrentColumns(HOCS);
-        setTableTitle("HOCS");
-        setModalType('table');
-        setOpen(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleViewHOCS = async () => {
+     try {
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/hocs");
+      setCurrentTableData(res.data.data);
+      // setMvrFilter(HOCSFilter)
+      setCurrentColumns(HOCS);
+      setTableTitle("HOCS");
+      setModalType('table');
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
+    <div className='sidebar-and-table'>
+      <SideBar handleViewMVRS={handleViewMVRS} handleViewKOCS={handleViewKOCS} handleViewHSOS={handleViewHSOS} handleViewHOCS={handleViewHOCS}/>
     <div className="table-users">
       <div className="header">Admin</div>
-      <div className="admin-button">
-        <button onClick={handleViewMVRS}>View <span> mvrs</span></button>
-        <button onClick={handleViewKOCS}>View <span> kocs</span></button>
-        <button onClick={handleViewHSOS}>View <span> hsos</span></button>
-        <button onClick={handleViewHOCS}>View <span> hocs</span></button>
-      </div>
 
       <table cellSpacing="0">
         <thead>
+          
           <tr className='table-head'>
             <th>Name</th>
             <th>Phone</th>
@@ -150,13 +173,13 @@ const Table = () => {
           ))}
         </tbody>
       </table>
-
       {open && (
-        <Modal isOpen={open} onClose={handleClose}>
-          {modalType === 'table' && <ReusableTable data={currentTableData} column={currentColumns} title={tableTitle} />}
+        <Modal isOpen={open} onClose={handleClose} filter={Filter} setFilter={setMvrFilter} rawData={currentTableData}>
+          {modalType === 'table' && <ReusableTable data={currentTableDataFiltered} column={currentColumns} title={tableTitle} />}
           {modalType === 'employee' && <EmployeeTable selectedRow={selectedRow} />}
         </Modal>
       )}
+    </div>
     </div>
   );
 }

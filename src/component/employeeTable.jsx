@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import SkeletonLoading from '../features/SkeletonLoading';
 
 const EmployeeTable = ({selectedRow,}) => {
     const [employee, setEmployee] = useState([]);
 
       useEffect(()=>{
         if(selectedRow && selectedRow._id){
-          axios.get("http://localhost:3001/employees/"+selectedRow._id)
+          axios.get("https://chatwithpdf.in/rnb_callbackurl/employees/"+selectedRow._id)
           .then((res) =>{
             setEmployee(res?.data?.data)
             console.log(res.data)
@@ -53,6 +54,10 @@ const EmployeeTable = ({selectedRow,}) => {
     {employee[0]?.companyName} </div>
     <div>
     </div>
+    {
+      !employee.length ? (
+        <h1><SkeletonLoading/></h1>
+      ):(
 
    <table cellspacing="0">
       <tr className='table-head'>
@@ -82,6 +87,9 @@ const EmployeeTable = ({selectedRow,}) => {
       })
       }
    </table>
+      )
+    }
+
 </div>
   )
 }
