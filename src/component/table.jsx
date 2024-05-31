@@ -3,7 +3,7 @@ import axios from 'axios';
 import EmployeeTable from './employeeTable';
 import Modal from './modal';
 import ReusableTable from './ReusableTable';
-import { HOCS, HSOS, KOCS, MVRS, HSOSFilter, KOCSFilter, MVRSFilter } from './Data';
+import { HOCS, HSOS, KOCS, MVRS, HSOSFilter, KOCSFilter, MVRSFilter, ISSUES } from './Data';
 import SideBar from './SideBar';
 
 const Table = () => {
@@ -135,9 +135,24 @@ const Table = () => {
     }
   };
 
+  const handleViewIssue = async () => {
+     try {
+      const res = await axios.get("http://localhost:3001/issues");
+      console.log(toString(res.data.data)+"handleViewIssue");
+      setCurrentTableData(res.data.data);
+      // setMvrFilter(HOCSFilter)
+      setCurrentColumns(ISSUES);
+      setTableTitle("ISSUES");
+      setModalType('table');
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className='sidebar-and-table'>
-      <SideBar handleViewMVRS={handleViewMVRS} handleViewKOCS={handleViewKOCS} handleViewHSOS={handleViewHSOS} handleViewHOCS={handleViewHOCS}/>
+      <SideBar handleViewMVRS={handleViewMVRS} handleViewKOCS={handleViewKOCS} handleViewHSOS={handleViewHSOS} handleViewHOCS={handleViewHOCS} handleViewIssue={handleViewIssue}/>
     <div className="table-users">
       <div className="header">Admin</div>
 

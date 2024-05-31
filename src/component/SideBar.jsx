@@ -6,7 +6,7 @@ import Patna from '../assets/Patna.png';
 import Pune from '../assets/pune1.png';
 import Logo from '../assets/rnblogo.png';
 
-const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSOS }) => {
+const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSOS, handleViewIssue}) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [loadingIndex, setLoadingIndex] = useState(null);
 
@@ -49,6 +49,11 @@ const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSO
                 <li>
                     <button onClick={() => handleButtonClick(handleViewHSOS, 3)}>
                         {loadingIndex === 3 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View HSOS'}
+                    </button>
+                </li>
+                <li>
+                    <button onClick={() => handleButtonClick(handleViewIssue, 4)}>
+                        {loadingIndex === 4 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View Issue'}
                     </button>
                 </li>
                 {data.map((item, index) => (

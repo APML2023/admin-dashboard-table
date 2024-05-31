@@ -5,14 +5,11 @@ import ReusableContainer from './ReusableContainer';
 const ReusableTable = ({ data, column, title }) => {
   console.log(data);
 
-  const totalTemperature = data.reduce((total, currentItem) => {
-    const temperature = isNaN(parseInt(currentItem.shelvesTemperature, 10)) ? 0 : parseInt(currentItem.shelvesTemperature, 10);
-    return total + temperature;
-  }, 0);
+  
   const totalCount = data.length
   return (
-    <div className=''>
-    <ReusableContainer temprature={totalTemperature} totalCount = {totalCount}/>
+    <div className='w-full'>
+    <ReusableContainer data={data} totalCount = {totalCount}/>
       {/* <span>Total Temperature: {totalTemperature}</span> 
       <span>Total Data: {totalCount}</span> */}
     {
@@ -20,8 +17,6 @@ const ReusableTable = ({ data, column, title }) => {
         <div className="table-users ">
           <div className="header">
             {title}
-            {/* <span>{data?.length}</span> */}
-            {/* <span>{data?.length}</span> */}
           </div>
           <table cellSpacing="0">
             <thead className='table-head`'>

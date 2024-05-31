@@ -72,18 +72,6 @@ export const MVRSFilter = [
     val: null,
     type: "string"
   },
-  {
-    name: "Ann/Unann", 
-    key: "announcedUnAnnounced",
-    val: null,
-    type: "string"
-  },
-  {
-    name: "Temp", 
-    key: "shelvesTemperature",
-    val: null,
-    type: "number"
-  }
 ]
 
 export const KOCS = [
@@ -178,6 +166,31 @@ export const HSOSFilter = [
     { heading: "Actionable", value: "actionable" },
     { heading: "Created At", value: "createdAt" },
     { heading: "Updated At", value: "updatedAt" }
+  ]
+
+  export const ISSUES = [
+    { "heading": "issueDescription", "value": "issueDescription" },
+    { "heading": "productCategory", "value": "productCategory" },
+    { "heading": "productName", "value": "productName" },
+    { "heading": "dateOfPurchase", "value": "dateOfPurchase" },
+    { "heading": "timeOfPurchase", "value": "timeOfPurchase" },
+    { "heading": "createdBy", "value": "createdBy" },
+    { "heading": "issueId", "value": "issueId" },
+    { "heading": "type", "value": "type" },
+    { "heading": "status", "value": "status",
+    "subColumns": [
+      { "heading": "phone", "value": "status?.phone" },
+      { "heading": "status", "value": "status?.status" },
+      { "heading": "Remark", "value": "status?.remark" },
+    ],
+     },
+    { "heading": "Time", "value": "status?.time" },
+    // { "heading": "assignees", "value": "assignees" },
+    { "heading": "createdAt", "value": "createdAt" },
+    { "heading": "updatedAt", "value": "updatedAt" },
+    { "heading": "__v", "value": "__v" },
+    { "heading": "url", "value": "url" },
+    { "heading": "issueType", "value": "issueType" }
   ]
   
   
