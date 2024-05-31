@@ -1,24 +1,27 @@
-.admin-button{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
-    padding: 10px;
+.admin-button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+/* button {
+  font-size: 20px;
+  background-color: #ffefbb;
+  margin: 5px 0px 5px 0px;
+  width: 200px;
+  padding: 7px;
+  border-radius: 5px;
+  color: #684F31;
+  cursor: pointer;
+  &:hover {
+    background-color: #684F31;
+    color: white;
   }
-  button{
-    font-size: 20px;
-    background-color: #ffefbb;
-    margin: 5px 0px 5px 0px;
-    width: 200px;
-    padding: 7px;
-    border-radius: 5px;
-    color: #684F31;
-    &:hover{
-      background-color: #684F31;
-      color: white;
-    }
-  }
-  .admin-button button span{
-    color: #6cbec6;
-    text-shadow: 1px 1px 1px #6cbec6;
-  }
+} */
+
+.admin-button button span {
+  color: #6cbec6;
+  text-shadow: 1px 1px 1px #6cbec6;
+}
