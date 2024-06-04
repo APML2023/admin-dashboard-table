@@ -6,7 +6,7 @@ import Patna from '../assets/Patna.png';
 import Pune from '../assets/pune1.png';
 import Logo from '../assets/rnblogo.png';
 
-const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSOS, handleViewIssue }) => {
+const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSOS, handleViewIssue, handleViewaudit }) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [loadingIndex, setLoadingIndex] = useState(null);
 
@@ -32,7 +32,11 @@ const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSO
             <img src={Logo} className="sidebar-image" alt="logo" />
             <ul>
                 <li>
-                    <button onClick={() => handleButtonClick(handleViewMVRS, 0)}>
+                    <button onClick={() => {
+                        handleButtonClick(handleViewMVRS, 0)
+                        handleButtonClick(handleViewaudit,0)
+
+                    }}>
                         {loadingIndex === 0 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif"
                             className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }}
                         /> : 'View MVRS'}

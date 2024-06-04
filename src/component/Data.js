@@ -59,6 +59,14 @@ export const MVRS = [
     { heading: "Updated At", value: "updatedAt" }
   ];
 
+
+  export const  auditcolumn = [
+
+    { heading: "Shope name", value: "shopName" },
+    { heading: "No of audit", value: "count" },
+    { heading: "No of Days", value: "days" },
+ 
+  ] 
 export const MVRSFilter = [
   {
     name: "Phone", 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import EmployeeTable from './employeeTable';
 import Modal from './modal';
 import ReusableTable from './ReusableTable';
-import { HOCS, HSOS, KOCS, MVRS, HSOSFilter, KOCSFilter, MVRSFilter, ISSUES } from './Data';
+import { HOCS, HSOS, KOCS, MVRS, HSOSFilter, KOCSFilter, MVRSFilter, ISSUES, auditcolumn } from './Data';
 import SideBar from './SideBar';
 
 const Table = () => {
@@ -11,10 +11,15 @@ const Table = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [open, setOpen] = useState(false);
   const [currentTableData, setCurrentTableData] = useState([]);
+  const [currentAuditTableData, setCurrentAuditTableData] = useState([])
   const [currentTableDataFiltered, setcurrentTableDataFiltered] = useState([]);
+  const [currentauditTableDataFiltered, setcurrentauditTableDataFiltered] = useState([]);
+
   const [modalType, setModalType] = useState(null);
   const [currentColumns, setCurrentColumns] = useState([]);
+  const [secondCurrentColumn, setSecondCurrentColumn] = useState([])
   const [tableTitle, setTableTitle] = useState("");
+  const [secondTableTitle, setsecondTableTitle] = useState("")
   const [Filter, setMvrFilter] = useState([]);
 
   const dynamicFilter = (d, filterAns) => {
@@ -79,10 +84,19 @@ const Table = () => {
     setcurrentTableDataFiltered(dynamicFilter(currentTableData, Filter))
   }, [Filter, currentTableData])
 
+
+  useEffect(() => {
+    setcurrentauditTableDataFiltered(dynamicFilter(currentAuditTableData, Filter))
+
+  }, [])
+
+
   const handleViewMVRS = async () => {
     try {
       const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/mvrs");
       setCurrentTableData(res.data.data);
+      setSecondCurrentColumn(auditcolumn);
+      setsecondTableTitle("AUDIT");
       setMvrFilter(MVRSFilter);
       setCurrentColumns(MVRS);
       setTableTitle("MVRS");
@@ -92,6 +106,22 @@ const Table = () => {
       console.log(err);
     }
   };
+
+
+  const handleViewaudit = async () => {
+    try {
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/mvrs");
+      setCurrentAuditTableData(res.data.data);
+      // setMvrFilter(MVRSFilter);
+      setSecondCurrentColumn(auditcolumn);
+      setsecondTableTitle("AUDIT");
+      setModalType('table');
+      setOpen(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 
   const handleViewKOCS = async () => {
     try {
@@ -150,9 +180,11 @@ const Table = () => {
     }
   };
 
+  console.log(currentAuditTableData, "currentTableData")
+
   return (
     <div className='sidebar-and-table'>
-      <SideBar handleViewMVRS={handleViewMVRS} handleViewKOCS={handleViewKOCS} handleViewHSOS={handleViewHSOS} handleViewHOCS={handleViewHOCS} handleViewIssue={handleViewIssue} />
+      <SideBar handleViewMVRS={handleViewMVRS} handleViewaudit={handleViewaudit} handleViewKOCS={handleViewKOCS} handleViewHSOS={handleViewHSOS} handleViewHOCS={handleViewHOCS} handleViewIssue={handleViewIssue} />
       <div className="table-users">
         <div className="header">Admin</div>
 
@@ -190,7 +222,13 @@ const Table = () => {
         </table>
         {open && (
           <Modal isOpen={open} onClose={handleClose} filter={Filter} setFilter={setMvrFilter} rawData={currentTableData}>
-            {modalType === 'table' && <ReusableTable data={currentTableDataFiltered} column={currentColumns} title={tableTitle} />}
+            <div >
+              {/* edhar table ki ui thik kar   */}
+
+                {modalType === 'table' && <ReusableTable data={currentAuditTableData} column={secondCurrentColumn} title={secondTableTitle} />}
+                {modalType === 'table' && <ReusableTable data={currentTableDataFiltered} column={currentColumns} title={tableTitle} />}
+            </div>
+
             {modalType === 'employee' && <EmployeeTable selectedRow={selectedRow} />}
           </Modal>
         )}

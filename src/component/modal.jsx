@@ -13,7 +13,7 @@ const Modal = ({ isOpen, onClose, children, setFilter, colums, rawData, filter }
 				position: "fixed",
 				top: 0,
 				left: 0,
-				margin:0,
+				margin: 0,
 				width: "100%",
 				height: "100%",
 				background: "rgba(0, 0, 0, 0.5)",
@@ -21,7 +21,7 @@ const Modal = ({ isOpen, onClose, children, setFilter, colums, rawData, filter }
 				alignItems: "center",
 				justifyContent: "center",
 			}}
-		> 
+		>
 			<div
 				style={{
 					background: "white",
@@ -31,20 +31,20 @@ const Modal = ({ isOpen, onClose, children, setFilter, colums, rawData, filter }
 					padding: "2%",
 					border: "2px solid #000",
 					borderRadius: "10px",
-                    overflow:"scroll",
+					overflow: "scroll",
 					boxShadow: "2px solid black",
-					display:" flex"
+					display: " flex"
 				}}
-				>
+			>
 				<div className="">
-		
-							<MultiFilter filter={filter} setFilter={setFilter} colums={colums} data={rawData} />
+
+					<MultiFilter filter={filter} setFilter={setFilter} colums={colums} data={rawData} />
 				</div>
-				<div style={{width:"100%"}}>
-				<div style={{color:"#684F31",width:"100%", display: "flex", justifyContent: "flex-end"}}>
-					<h1 onClick={onClose} ><FaWindowClose size={30}/></h1>
-				</div>
-				{children}
+				<div style={{ width: "100%" }}>
+					<div style={{ color: "#684F31", width: "100%", display: "flex", justifyContent: "flex-end", overflow:"scroll" }}>
+						<h1 onClick={onClose} ><FaWindowClose size={30} /></h1>
+					</div>
+					{children}
 				</div>
 			</div>
 		</div>
