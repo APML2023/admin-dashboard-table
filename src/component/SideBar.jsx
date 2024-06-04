@@ -62,6 +62,14 @@ const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSO
                         {loadingIndex === 4 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }} /> : 'View Issue'}
                     </button>
                 </li>
+                <li>
+                    <button onClick={()=>{
+                        window.localStorage.clear()
+                        window.location.href = "/"
+                    }}>
+                        Logout
+                    </button>
+                </li>
                 {data.map((item, index) => (
                     <li key={index} className={index === activeIndex ? "active" : ""} onClick={() => handleClick(index)}>
                         <img src={item.img} alt="image" />
