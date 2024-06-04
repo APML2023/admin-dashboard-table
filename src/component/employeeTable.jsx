@@ -48,8 +48,8 @@ const EmployeeTable = ({selectedRow,}) => {
   };
 
   return (
-    <div class="table-users">
-   <div class="header" >
+    <div className="table-users">
+   <div className="header" >
     <span>{employee.length}</span>
     {employee[0]?.companyName} </div>
     <div>

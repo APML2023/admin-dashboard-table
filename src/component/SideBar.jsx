@@ -6,7 +6,7 @@ import Patna from '../assets/Patna.png';
 import Pune from '../assets/pune1.png';
 import Logo from '../assets/rnblogo.png';
 
-const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSOS, handleViewIssue}) => {
+const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSOS, handleViewIssue }) => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [loadingIndex, setLoadingIndex] = useState(null);
 
@@ -24,7 +24,7 @@ const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSO
     const handleButtonClick = (viewHandler, index) => {
         setLoadingIndex(index);
         viewHandler()
-          .finally(() => setLoadingIndex(null));
+            .finally(() => setLoadingIndex(null));
     };
 
     return (
@@ -33,27 +33,29 @@ const SideBar = ({ handleViewMVRS, handleViewKOCS, handleViewHOCS, handleViewHSO
             <ul>
                 <li>
                     <button onClick={() => handleButtonClick(handleViewMVRS, 0)}>
-                        {loadingIndex === 0 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View MVRS'}
+                        {loadingIndex === 0 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif"
+                            className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }}
+                        /> : 'View MVRS'}
                     </button>
                 </li>
                 <li>
                     <button onClick={() => handleButtonClick(handleViewKOCS, 1)}>
-                        {loadingIndex === 1 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View KOCS'}
+                        {loadingIndex === 1 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }} /> : 'View KOCS'}
                     </button>
                 </li>
                 <li>
                     <button onClick={() => handleButtonClick(handleViewHOCS, 2)}>
-                        {loadingIndex === 2 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View HOCS'}
+                        {loadingIndex === 2 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }} /> : 'View HOCS'}
                     </button>
                 </li>
                 <li>
                     <button onClick={() => handleButtonClick(handleViewHSOS, 3)}>
-                        {loadingIndex === 3 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View HSOS'}
+                        {loadingIndex === 3 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }} /> : 'View HSOS'}
                     </button>
                 </li>
                 <li>
                     <button onClick={() => handleButtonClick(handleViewIssue, 4)}>
-                        {loadingIndex === 4 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{backgroundColor:"transparent", width:"30px", height:"30px"}}/> : 'View Issue'}
+                        {loadingIndex === 4 ? <img src="https://ribbonsandballoons.com/frontassets/wave-ball-preloader.gif" className='w-[10px] h-[10px]' style={{ backgroundColor: "transparent", width: "30px", height: "30px" }} /> : 'View Issue'}
                     </button>
                 </li>
                 <li>
