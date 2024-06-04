@@ -28,7 +28,8 @@ console?.log(data,"datadata")
     let cobj = {}
 
     data?.forEach(e => {
-        if (e?.shelvesTemperature != "N/A") st = st + Number(e?.shelvesTemperature)
+        // if (e?.shelvesTemperature != "N/A") st = st + Number(e?.shelvesTemperature)
+        if (Number(e?.shelvesTemperature)===0 ) st ++
         if (e?.freshnessOfGoods != "N/A") fg = fg + Number(e?.freshnessOfGoods)
         if (e?.varietyOfGoods != "N/A") vog = vog + Number(e?.varietyOfGoods)
         if (e?.presentationOfPackagingItems != "N/A") pop = pop + Number(e?.presentationOfPackagingItems)

@@ -1,4 +1,5 @@
 export const MVRS = [
+      { heading: "Created At", value: 'createdAt' },
     { heading: "Recipient Phone", value: "recipientPhone" },
     { heading: "Shop Name", value: "shopName" },
     { heading: "Manager", value: "manager" },
@@ -55,7 +56,6 @@ export const MVRS = [
     { heading: "Management of Online Sales Remark", value: "managementOfOnlineSalesRemark" },
     { heading: "Adherence to Operational Standards", value: "adherenceToOperationalStandards" },
     { heading: "Adherence to Operational Standards Remark", value: "adherenceToOperationalStandardsRemark" },
-    { heading: "Created At", value: "createdAt" },
     { heading: "Updated At", value: "updatedAt" }
   ];
 
@@ -71,6 +71,12 @@ export const MVRSFilter = [
     key: "shopName",
     val: null,
     type: "string"
+  },
+  {
+    name: "From",
+    key: "createdAt",
+    val: null,
+    type: "number"
   },
 ]
 
