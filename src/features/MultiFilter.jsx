@@ -19,7 +19,7 @@ const MultiFilter = ({ setFilter, data, filter }) => {
     return Array.from(set);
   };
 
-  let filterData = filter[0].val == null ? data : data.filter(d=>d?.employeeDetails[0]?.employeeName == filter[0]?.val)
+  let filterData = filter[0]?.val == null ? data : data.filter(d=>d?.employeeDetails[0]?.employeeName == filter[0]?.val)
 
   console.log(filterData, data, "filterDatafilterData")
 
@@ -71,7 +71,7 @@ const MultiFilter = ({ setFilter, data, filter }) => {
                       onChange={(e) => {
                         console.log(e.target.value, 'namefilter')
                         setFilter((p) => {
-                          filter[1].val = filter[2].val = null
+                          val.val = val.val = null;
                           const pre = JSON.parse(JSON.stringify(p));
                           pre[index] = {
                             ...pre[index],

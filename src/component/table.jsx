@@ -51,15 +51,15 @@ const Table = () => {
         if (
           filterAns[i] == null ||
           filterAns[i] == undefined ||
-          filterAns[i].val == null ||
-          filterAns[i].val == undefined
+          filterAns[i]?.val == null ||
+          filterAns[i]?.val == undefined
         )
           return true;
 
         if (filterAns[i].type == "number") {
-          if(filterAns[i].name != 'Name') return val[filterAns[i].key] == filterAns[i].val;
+          if(filterAns[i].name != 'Name') return val[filterAns[i].key] == filterAns[i]?.val;
           else {
-            return val?.employeeDetails[0]?.employeeName == filterAns[i].val
+            return val?.employeeDetails[0]?.employeeName == filterAns[i]?.val
           }
         }
 
@@ -98,10 +98,10 @@ const Table = () => {
   };
 
   const handleBranch = () => {
-    const branches = employers.flatMap((employer) =>
-      employer.branch.map((branch) => ({
-        name: branch.name,
-        range: branch.range,
+    const branches = employers?.flatMap((employer) =>
+      employer?.branch.map((branch) => ({
+        name: branch?.name,
+        range: branch?.range,
       }))
     );
     setCurrentTableData(branches);
