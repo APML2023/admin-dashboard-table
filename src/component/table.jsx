@@ -40,11 +40,15 @@ const Table = () => {
   const [Filter, setMvrFilter] = useState([]);
   const [value, setValue] = React.useState("1");
 
+  const [from, setFrom] = useState()
+  const [to, setTo] = useState()
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const dynamicFilter = (d, filterAns) => {
+    console.log(filterAns, "filterAnsfilterAns")
     let data = d;
     for (let i = 0; i < filterAns.length; i++) {
       data = data.filter((val) => {
@@ -57,8 +61,11 @@ const Table = () => {
           return true;
 
         if (filterAns[i].type == "number") {
-          if(filterAns[i].name != 'Name') return val[filterAns[i].key] == filterAns[i]?.val;
-          else {
+          if (filterAns[i].name != 'Name' && filterAns[3].val == null) return val[filterAns[i].key] == filterAns[i]?.val;
+          // else if(filterAns[3].val != null && filterAns[2].val != null){
+          //   return filterAns[2].val>val[filterAns[2].key]<val[filterAns[3].key]
+          // }
+          else if (filterAns[i].name == 'Name') {
             return val?.employeeDetails[0]?.employeeName == filterAns[i]?.val
           }
         }
@@ -284,6 +291,10 @@ const Table = () => {
             filter={Filter}
             setFilter={setMvrFilter}
             rawData={currentTableData}
+            setFrom={setFrom}
+            setTo={setTo}
+            from={from}
+            to={to}
           >
             {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
               <span style={{ width: "100%" }}>
@@ -309,43 +320,46 @@ const Table = () => {
             {modalType === "employee" && (
               <EmployeeTable selectedRow={selectedRow} />
             )}
-            <div style={{ marginLeft:"2rem", overflow:"auto"}}>
-            <TabContext value={value}>
-              <Box sx={{ borderBottom: 1, borderColor: "brown" }}>
-                <TabList
-                  onChange={handleChange}
-                >
-                  <Tab label="Audit" value="1" />
-                  <Tab label="MVRS Summary" value="2" />
-                </TabList>
-              </Box>
-              <TabPanel value="1">
-                {" "}
-                <span style={{overflow:"auto"}}>
-                {modalType === "table" && (
-                  <ReusableTable
-                    data={currentAuditTableData}
-                    column={secondCurrentColumn}
-                    title={secondTableTitle}
-                  />
-                )}
-                </span>
-              
-              </TabPanel>
-              <TabPanel value="2">
-                {" "}
-                {modalType === "table" && (
-                  <MvrTable
-                    data={currentTableDataFiltered}
-                    column={currentColumns}
-                    title={tableTitle}
-                  />
-                )}
-              </TabPanel>
-            </TabContext>
+            <div style={{ marginLeft: "2rem", overflow: "auto" }}>
+              <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: "brown" }}>
+                  <TabList
+                    onChange={handleChange}
+                  >
+                    <Tab label="Audit" value="1" />
+                    <Tab label="MVRS Summary" value="2" />
+                  </TabList>
+                </Box>
+                <TabPanel value="1">
+                  {" "}
+                  <span style={{ overflow: "auto" }}>
+                    {modalType === "table" && (
+                      <ReusableTable
+                        data={currentAuditTableData}
+                        column={secondCurrentColumn}
+                        title={secondTableTitle}
+                      />
+                    )}
+                  </span>
+
+                </TabPanel>
+                <TabPanel value="2">
+                  {" "}
+                  {modalType === "table" && (
+                    <MvrTable
+                      data={currentTableDataFiltered}
+                      column={currentColumns}
+                      title={tableTitle}
+                      from={from}
+                      to={to}
+
+                    />
+                  )}
+                </TabPanel>
+              </TabContext>
             </div>
-           
-          {/* <Modal isOpen={open} onClose={handleClose} filter={Filter} setFilter={setMvrFilter} rawData={currentTableData}>
+
+            {/* <Modal isOpen={open} onClose={handleClose} filter={Filter} setFilter={setMvrFilter} rawData={currentTableData}>
             {modalType === 'table' && <ReusableTable data={currentTableDataFiltered} column={currentColumns} title={tableTitle} />}
             {modalType === 'employee' && <EmployeeTable selectedRow={selectedRow} />}
             {modalType === 'mvrTable' && <MvrTable selectedRow={selectedRow} column={currentColumns} title={tableTitle} data={currentTableDataFiltered}  />} */}

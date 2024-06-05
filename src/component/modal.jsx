@@ -3,8 +3,9 @@
 import React from "react";
 import { FaWindowClose } from "react-icons/fa";
 import MultiFilter from "../features/MultiFilter";
+import { FiFilter } from "react-icons/fi";
 
-const Modal = ({ isOpen, onClose, children, setFilter, colums, rawData, filter }) => {
+const Modal = ({from,to,setFrom,setTo, isOpen, onClose, children, setFilter, colums, rawData, filter }) => {
 	if (!isOpen) return null;
 
 	return (
@@ -27,7 +28,7 @@ const Modal = ({ isOpen, onClose, children, setFilter, colums, rawData, filter }
 					background: "white",
 					height: "fit-content",
 					width: "100%",
-					margin: "auto",
+					// margin: "auto",
 					padding: "2%",
 					border: "2px solid #000",
 					borderRadius: "10px",
@@ -38,10 +39,28 @@ const Modal = ({ isOpen, onClose, children, setFilter, colums, rawData, filter }
 			>
 				<div className="">
 
-					<MultiFilter filter={filter} setFilter={setFilter} colums={colums} data={rawData} />
+					<MultiFilter setFrom={setFrom} setTo={setTo} filter={filter} setFilter={setFilter} colums={colums} data={rawData} />
+
+					{/* <div className="filter-main-container ">
+						<div className="div2-container ">
+							<div className="filter-container" >
+								<h4>From </h4>
+								<input type="date" />
+							</div>
+						</div>
+
+						<div className="div2-container ">
+							<div className="filter-container" >
+								<h4>To </h4>
+								<input type="date" />
+							</div>
+						</div>
+					</div> */}
+
+
 				</div>
 				<div style={{ width: "100%" }}>
-					<div style={{ color: "#684F31", width: "100%", display: "flex", justifyContent: "flex-end", overflow:"scroll" }}>
+					<div style={{ color: "#684F31", width: "100%", display: "flex", justifyContent: "flex-end", overflow: "scroll" }}>
 						<h1 onClick={onClose} ><FaWindowClose size={30} /></h1>
 					</div>
 					{children}

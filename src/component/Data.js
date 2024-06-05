@@ -83,7 +83,20 @@ export const MVRSFilter = [
     key: "shopName",
     val: null,
     type: "string"
+  },
+  {
+    name: "From", 
+    key: "createdAt",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "To", 
+    key: "updatedAt",
+    val: null,
+    type: "string"
   }
+
   // {
   //   name: "From",
   //   key: "createdAt",

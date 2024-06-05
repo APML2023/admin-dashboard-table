@@ -13,14 +13,40 @@
 }
 .table-users {
     border: 1px solid #684F31;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
-    max-width: calc(100% - 10%);
-    margin: 1em auto;
+    /* max-width: calc(100% - 10%); */
+    /* margin: 1em auto; */
     position: relative;
-    overflow: auto; 
+    overflow-y:scroll; 
     width: 100%;
     height: 700px;
+  }
+
+  .cus-table{
+    background-color: red;
+    overflow: scroll;
+  }
+
+  .cus-search-filter{
+    /* background-color: red; */
+    position: absolute;
+    top: 4rem;
+    right: 6rem;
+  }
+
+  .cus-search-filter input{
+    width: 16rem;
+    height: 2.5rem;
+    padding: 0 2rem;
+    font-size: 1rem;
+    border: 2px solid #684F31;
+    background-color: #ffefbb;
+  }
+
+  .search-icon{
+    transform: translateX(28px) translateY(5px);
+    font-size: 1.2rem;
   }
   
   table {
@@ -28,6 +54,7 @@
     text-align: center;
     position: absolute;
     border-collapse: collapse;
+    overflow: scroll;
   }
   table td, table th {
     width: fit-content;

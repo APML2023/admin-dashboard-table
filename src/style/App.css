@@ -8,6 +8,8 @@ body * {
 }
 
 .header {
+  /* border-radius: 10px; */
+
   background-color: #684F31;
   text-align: center;
   color: #ffefbb;
