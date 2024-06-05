@@ -129,9 +129,6 @@ const ReusableTable = ({ data, column, title }) => {
   console.log(sortedData, "finalcoumn")
   return (
     <div className='w-full '>
-      {/* <ReusableContainer data={data} totalCount={totalCount} /> */}
-      {/* <span>Total Temperature: {totalTemperature}</span> 
-      <span>Total Data: {totalCount}</span> */}
       {
         sortedData.length && column ? (
           <div className="table-users">
@@ -153,6 +150,7 @@ const ReusableTable = ({ data, column, title }) => {
                       {
                         column.map((c, i) => {
                           return <td key={i}>{c.value=="days" ? `${v[c.value]} days` :v[c.value] }</td>
+                          // return  <td key={i}>{c.heading != "Name"? v[c.value] : v?.employeeDetails[0]?.employeeName}</td>
                         })
                       }
 

@@ -20,6 +20,7 @@ import {
   auditcolumn,
 } from "./Data";
 import SideBar from "./SideBar";
+import MvrTable from './MvrTable'
 
 const Table = () => {
   const [employers, setEmployers] = useState([]);
@@ -56,7 +57,10 @@ const Table = () => {
           return true;
 
         if (filterAns[i].type == "number") {
-          return val[filterAns[i].key] == filterAns[i].val;
+          if(filterAns[i].name != 'Name') return val[filterAns[i].key] == filterAns[i].val;
+          else {
+            return val?.employeeDetails[0]?.employeeName == filterAns[i].val
+          }
         }
 
         if (filterAns[i].type == "string") {
@@ -122,16 +126,17 @@ const Table = () => {
 
   const handleViewMVRS = async () => {
     try {
-      const res = await axios.get(
-        "https://chatwithpdf.in/rnb_callbackurl/mvrs"
-      );
+      // const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/mvrs");
+      const res = await axios.get("https://apml-api-b1.glitch.me/api/v1/ribbons");
       setCurrentTableData(res.data.data);
       setSecondCurrentColumn(auditcolumn);
       setsecondTableTitle("AUDIT");
       setMvrFilter(MVRSFilter);
       setCurrentColumns(MVRS);
       setTableTitle("MVRS");
-      setModalType("table");
+      // setModalType("table");
+      setModalType('mvrTable');
+
       setOpen(true);
     } catch (err) {
       console.log(err);
@@ -148,6 +153,7 @@ const Table = () => {
       setSecondCurrentColumn(auditcolumn);
       setsecondTableTitle("AUDIT");
       setModalType("table");
+      // setModalType('mvrTable');
       setOpen(true);
     } catch (err) {
       console.log(err);
@@ -329,7 +335,7 @@ const Table = () => {
               <TabPanel value="2">
                 {" "}
                 {modalType === "table" && (
-                  <ReusableTable
+                  <MvrTable
                     data={currentTableDataFiltered}
                     column={currentColumns}
                     title={tableTitle}
@@ -339,6 +345,10 @@ const Table = () => {
             </TabContext>
             </div>
            
+          {/* <Modal isOpen={open} onClose={handleClose} filter={Filter} setFilter={setMvrFilter} rawData={currentTableData}>
+            {modalType === 'table' && <ReusableTable data={currentTableDataFiltered} column={currentColumns} title={tableTitle} />}
+            {modalType === 'employee' && <EmployeeTable selectedRow={selectedRow} />}
+            {modalType === 'mvrTable' && <MvrTable selectedRow={selectedRow} column={currentColumns} title={tableTitle} data={currentTableDataFiltered}  />} */}
           </Modal>
         )}
       </div>

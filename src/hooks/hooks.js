@@ -1,6 +1,6 @@
 
-export const useGetCount = ( data ) => {
-console?.log(data,"datadata")
+export const useGetCount = (data) => {
+    console?.log(data, "datadata")
     let st = 0
     let fg = 0
     let vog = 0
@@ -29,58 +29,65 @@ console?.log(data,"datadata")
 
     data?.forEach(e => {
         // if (e?.shelvesTemperature != "N/A") st = st + Number(e?.shelvesTemperature)
-        if (Number(e?.shelvesTemperature)===0 ) st ++
-        if (e?.freshnessOfGoods != "N/A") fg = fg + Number(e?.freshnessOfGoods)
-        if (e?.varietyOfGoods != "N/A") vog = vog + Number(e?.varietyOfGoods)
-        if (e?.presentationOfPackagingItems != "N/A") pop = pop + Number(e?.presentationOfPackagingItems)
-        if (e?.customerGreeting != "N/A") cg = cg + Number(e?.customerGreeting)
-        if (e?.knowledgeOfProducts != "N/A") kop = kop + Number(e?.knowledgeOfProducts)
-        if (e?.convincingCustomerForPhoneNumber != "N/A") ccfpn = ccfpn + Number(e?.convincingCustomerForPhoneNumber)
-        if (e?.handlingCustomerComplaintsAndInquiries != "N/A") hccai = hccai + Number(e?.handlingCustomerComplaintsAndInquiries)
-        if (e?.cleanlinessOfStore != "N/A") cos = cos + Number(e?.cleanlinessOfStore)
-        if (e?.atmosphereAndDecor != "N/A") aad = aad + Number(e?.atmosphereAndDecor)
-        if (e?.cleanExteriorSignage != "N/A") ces = ces + Number(e?.cleanExteriorSignage)
-        if (e?.easeOfAccess != "N/A") eoa = eoa + Number(e?.easeOfAccess)
-        if (e?.facadeMaintained != "N/A") fm = fm + Number(e?.facadeMaintained)
-        if (e?.understandingOfLocalMarket != "N/A") uolm = uolm + Number(e?.understandingOfLocalMarket)
-        if (e?.crmActivities != "N/A") ca = ca + Number(e?.crmActivities)
-        if (e?.competitorAwareness != "N/A") cta = cta + Number(e?.competitorAwareness)
-        if (e?.executionOfPromotionalActivities != "N/A") eopa = eopa + Number(e?.executionOfPromotionalActivities)
-        if (e?.strategiesToUpsellAndCrossSell != "N/A") stuc = stuc + Number(e?.strategiesToUpsellAndCrossSell)
-        if (e?.initiativeAtLocalLevel != "N/A") iall = iall + Number(e?.initiativeAtLocalLevel)
-        if (e?.kocFiled != "N/A") kocf = kocf + Number(e?.kocFiled)
-        if (e?.minimizationOfWastageProducts != "N/A") mowp = mowp + Number(e?.minimizationOfWastageProducts)
-        if (e?.optimizationOfProductMix != "N/A") oopm = oopm + Number(e?.optimizationOfProductMix)
-        if (e?.managementOfOnlineSales != "N/A") moos = moos + Number(e?.managementOfOnlineSales)
-        if (e?.adherenceToOperationalStandards != "N/A") atos = atos + Number(e?.adherenceToOperationalStandards)
+        if (Number(e?.shelvesTemperature) == 0) st++
+        if (Number(e?.freshnessOfGoods) == 0) fg++
+        if (Number(e?.varietyOfGoods) == 0) vog++
+        if (Number(e?.presentationOfPackagingItems) == 0) pop++
+        if (Number(e?.customerGreeting) == 0) cg++
+        if (Number(e?.knowledgeOfProducts) == 0) kop++
+        if (Number(e?.convincingCustomerForPhoneNumber) == 0) ccfpn++
+        if (Number(e?.handlingCustomerComplaintsAndInquiries) == 0) hccai++
+        if (Number(e?.cleanlinessOfStore) == 0) cos++
+        if (Number(e?.atmosphereAndDecor) == 0) aad++
+        if (Number(e?.cleanExteriorSignage) == 0) ces++
+        if (Number(e?.easeOfAccess) == 0) eoa++
+        if (Number(e?.facadeMaintained) == 0) fm++
+        if (Number(e?.understandingOfLocalMarket) == 0) uolm++
+        if (Number(e?.crmActivities) == 0) ca++
+        if (Number(e?.competitorAwareness) == 0) cta++
+        if (Number(e?.executionOfPromotionalActivities) == 0) eopa++
+        if (Number(e?.strategiesToUpsellAndCrossSell) == 0) stuc++
+        if (Number(e?.initiativeAtLocalLevel) == 0) iall++
+        if (Number(e?.kocFiled) == 0) kocf++
+        if (Number(e?.minimizationOfWastageProducts) == 0) mowp++
+        if (Number(e?.optimizationOfProductMix) == 0) oopm++
+        if (Number(e?.managementOfOnlineSales) == 0) moos++
+        if (Number(e?.adherenceToOperationalStandards) == 0) atos++
     });
 
-    cobj = {
-        "shelvesTemperature": st,
-        "freshnessOfGoods": fg,
-        "varietyOfGoods": vog,
-        "presentationOfPackagingItems": pop,
-        "customerGreeting": cg,
-        "knowledgeOfProducts": kop,
-        "convincingCustomerForPhoneNumber": ccfpn,
-        "handlingCustomerComplaintsAndInquiries": hccai,
-        "cleanlinessOfStore": cos,
-        "atmosphereAndDecor": aad,
-        "cleanExteriorSignage": ces,
-        "easeOfAccess": eoa,
-        "facadeMaintained": fm,
-        "understandingOfLocalMarket": uolm,
-        "crmActivities": ca,
-        "competitorAwareness": cta,
-        "executionOfPromotionalActivities": eopa,
-        "strategiesToUpsellAndCrossSell": stuc,
-        "initiativeAtLocalLevel": iall,
-        "kocFiled": kocf,
-        "minimizationOfWastageProducts": mowp,
-        "optimizationOfProductMix": oopm,
-        "managementOfOnlineSales": moos,
-        "adherenceToOperationalStandards": atos,
-    }
 
-    return {cobj}
+
+    cobj = [
+        { key: "shelvesTemperature", value: st, },
+        { key: "freshnessOfGoods", value: fg, },
+        { key: "varietyOfGoods", value: vog, },
+        { key: "presentationOfPackagingItems", value: pop, },
+        { key: "customerGreeting", value: cg, },
+        { key: "knowledgeOfProducts", value: kop, },
+        { key: "convincingCustomerForPhoneNumber", value: ccfpn, },
+        { key: "handlingCustomerComplaintsAndInquiries", value: hccai, },
+        { key: "cleanlinessOfStore", value: cos, },
+        { key: "atmosphereAndDecor", value: aad, },
+        { key: "cleanExteriorSignage", value: ces, },
+        { key: "easeOfAccess", value: eoa, },
+        { key: "facadeMaintained", value: fm, },
+        { key: "understandingOfLocalMarket", value: uolm, },
+        { key: "crmActivities", value: ca, },
+        { key: "competitorAwareness", value: cta, },
+        { key: "executionOfPromotionalActivities", value: eopa, },
+        { key: "strategiesToUpsellAndCrossSell", value: stuc, },
+        { key: "initiativeAtLocalLevel", value: iall, },
+        { key: "kocFiled", value: kocf, },
+        { key: "minimizationOfWastageProducts", value: mowp, },
+        { key: "optimizationOfProductMix", value: oopm, },
+        { key: "managementOfOnlineSales", value: moos, },
+        { key: "adherenceToOperationalStandards", value: atos, },
+    ]
+
+    let totalCount = 0
+    cobj.forEach(e => {
+        totalCount = e.value + totalCount
+    })
+
+    return { cobj,totalCount }
 }
