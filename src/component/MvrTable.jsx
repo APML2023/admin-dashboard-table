@@ -93,7 +93,7 @@ const MvrTable = ({ column, title, data }) => {
                   </th>
                   <th>employeeName</th>
                   {/* <th>manager</th> */}
-                  <th>announcedUnAnnounced</th>
+                  {/* <th>announcedUnAnnounced</th> */}
                   <th>Total 100</th>
 
                   <th>Quality products {TotalQualityProduct} <input onClick={() => setIsExpandOptions(!isExpandOpions)} type='checkbox' style={{ width: '20px', height: '20px' }} /></th>
@@ -174,7 +174,7 @@ const MvrTable = ({ column, title, data }) => {
                           {d?.employeeDetails[0]?.employeeName}
                         </td>
                         {/* <td>{d.manager}</td> */}
-                        <td>{d.announcedUnAnnounced}</td>
+                        {/* <td>{d.announcedUnAnnounced}</td> */}
                         <td>{Number(d.customerGreeting == "N/A" ? 0 : d.customerGreeting) + Number(d.knowledgeOfProducts == "N/A" ? 0 : d.knowledgeOfProducts) + Number(d.convincingCustomerForPhoneNumber == "N/A" ? 0 : d.convincingCustomerForPhoneNumber) + Number(d.handlingCustomerComplaintsAndInquiries == "N/A" ? 0 : d.handlingCustomerComplaintsAndInquiries) + Number(d.cleanlinessOfStore == "N/A" ? 0 : d.cleanlinessOfStore) + Number(d.atmosphereAndDecor == "N/A" ? 0 : d.atmosphereAndDecor) + Number(d.cleanExteriorSignage == "N/A" ? 0 : d.cleanExteriorSignage) + Number(d.easeOfAccess == "N/A" ? 0 : d.easeOfAccess) + Number(d.facadeMaintained == "N/A" ? 0 : d.facadeMaintained) + Number(d.understandingOfLocalMarket == "N/A" ? 0 : d.understandingOfLocalMarket) + Number(d.crmActivities == "N/A" ? 0 : d.crmActivities) + Number(d.competitorAwareness == "N/A" ? 0 : d.competitorAwareness) + Number(d.executionOfPromotionalActivities == "N/A" ? 0 : d.executionOfPromotionalActivities) + Number(d.strategiesToUpsellAndCrossSell == "N/A" ? 0 : d.strategiesToUpsellAndCrossSell) + Number(d.initiativeAtLocalLevel == "N/A" ? 0 : d.initiativeAtLocalLevel) + Number(d.kocFiled == "N/A" ? 0 : d.kocFiled) + Number(d.minimizationOfWastageProducts == "N/A" ? 0 : d.minimizationOfWastageProducts) + Number(d.optimizationOfProductMix == "N/A" ? 0 : d.optimizationOfProductMix) + Number(d.managementOfOnlineSales == "N/A" ? 0 : d.managementOfOnlineSales) + Number(d.adherenceToOperationalStandards == "N/A" ? 0 : d.adherenceToOperationalStandards)}</td>
 
                         <td>{QualityProduct(d.shelvesTemperature == "N/A" ? 0 : d.shelvesTemperature, d.freshnessOfGoods == "N/A" ? 0 : d.freshnessOfGoods, d.varietyOfGoods == 'N/A' ? 0 : d.varietyOfGoods, d.presentationOfPackagingItems == "N/A" ? 0 : d.presentationOfPackagingItems)}</td>

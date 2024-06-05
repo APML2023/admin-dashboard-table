@@ -83,13 +83,13 @@ export const MVRSFilter = [
     key: "shopName",
     val: null,
     type: "string"
-  },
-  {
-    name: "From",
-    key: "createdAt",
-    val: null,
-    type: "number"
-  },
+  }
+  // {
+  //   name: "From",
+  //   key: "createdAt",
+  //   val: null,
+  //   type: "number"
+  // },
 ]
 
 export const KOCS = [
