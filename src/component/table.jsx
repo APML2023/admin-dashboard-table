@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import EmployeeTable from "./employeeTable";
-import Modal from "./modal";
-import ReusableTable from "./ReusableTable";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import axios from "axios";
+
+import EmployeeTable from "./employeeTable";
+import Modal from "./modal";
+import ReusableTable from "./ReusableTable";
 import {
   HOCS,
   HSOS,
@@ -20,7 +21,7 @@ import {
   auditcolumn,
 } from "./Data";
 import SideBar from "./SideBar";
-import MvrTable from './MvrTable'
+import MvrTable from "./MvrTable";
 
 const Table = () => {
   const [employers, setEmployers] = useState([]);
@@ -29,8 +30,7 @@ const Table = () => {
   const [currentTableData, setCurrentTableData] = useState([]);
   const [currentAuditTableData, setCurrentAuditTableData] = useState([]);
   const [currentTableDataFiltered, setcurrentTableDataFiltered] = useState([]);
-  const [currentauditTableDataFiltered, setcurrentauditTableDataFiltered] =
-    useState([]);
+  const [currentauditTableDataFiltered, setcurrentauditTableDataFiltered] = useState([]);
 
   const [modalType, setModalType] = useState(null);
   const [currentColumns, setCurrentColumns] = useState([]);
@@ -40,15 +40,14 @@ const Table = () => {
   const [Filter, setMvrFilter] = useState([]);
   const [value, setValue] = React.useState("1");
 
-  const [from, setFrom] = useState()
-  const [to, setTo] = useState()
+  const [from, setFrom] = useState();
+  const [to, setTo] = useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const dynamicFilter = (d, filterAns) => {
-    console.log(filterAns, "filterAnsfilterAns")
     let data = d;
     for (let i = 0; i < filterAns.length; i++) {
       data = data.filter((val) => {
@@ -61,19 +60,18 @@ const Table = () => {
           return true;
 
         if (filterAns[i].type == "number") {
-          if (filterAns[i].name != 'Name' && filterAns[3].val == null) return val[filterAns[i].key] == filterAns[i]?.val;
+          if (filterAns[i].name != "Name" && filterAns[3].val == null)
+            return val[filterAns[i].key] == filterAns[i]?.val;
           // else if(filterAns[3].val != null && filterAns[2].val != null){
           //   return filterAns[2].val>val[filterAns[2].key]<val[filterAns[3].key]
           // }
-          else if (filterAns[i].name == 'Name') {
-            return val?.employeeDetails[0]?.employeeName == filterAns[i]?.val
+          else if (filterAns[i].name == "Name") {
+            return val?.employeeDetails[0]?.employeeName == filterAns[i]?.val;
           }
         }
 
         if (filterAns[i].type == "string") {
-          return val[filterAns[i].key]
-            .toLowerCase()
-            .includes(filterAns[i].val.toLowerCase());
+          return val[filterAns[i].key].toLowerCase().includes(filterAns[i].val.toLowerCase());
         }
         return true;
       });
@@ -126,9 +124,7 @@ const Table = () => {
   }, [Filter, currentTableData]);
 
   useEffect(() => {
-    setcurrentauditTableDataFiltered(
-      dynamicFilter(currentAuditTableData, Filter)
-    );
+    setcurrentauditTableDataFiltered(dynamicFilter(currentAuditTableData, Filter));
   }, []);
 
   const handleViewMVRS = async () => {
@@ -142,7 +138,7 @@ const Table = () => {
       setCurrentColumns(MVRS);
       setTableTitle("MVRS");
       // setModalType("table");
-      setModalType('mvrTable');
+      setModalType("mvrTable");
 
       setOpen(true);
     } catch (err) {
@@ -152,9 +148,7 @@ const Table = () => {
 
   const handleViewaudit = async () => {
     try {
-      const res = await axios.get(
-        "https://chatwithpdf.in/rnb_callbackurl/mvrs"
-      );
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/mvrs");
       setCurrentAuditTableData(res.data.data);
       // setMvrFilter(MVRSFilter);
       setSecondCurrentColumn(auditcolumn);
@@ -169,9 +163,10 @@ const Table = () => {
 
   const handleViewKOCS = async () => {
     try {
-      const res = await axios.get(
-        "https://chatwithpdf.in/rnb_callbackurl/kocs"
-      );
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/kocs");
+
+      console.log(res.data, "kocs");
+
       setCurrentTableData(res.data.data);
       setMvrFilter(KOCSFilter);
       setCurrentColumns(KOCS);
@@ -185,9 +180,7 @@ const Table = () => {
 
   const handleViewHSOS = async () => {
     try {
-      const res = await axios.get(
-        "https://chatwithpdf.in/rnb_callbackurl/hsos"
-      );
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/hsos");
       setCurrentTableData(res.data.data);
       setMvrFilter(HSOSFilter);
       setCurrentColumns(HSOS);
@@ -201,9 +194,7 @@ const Table = () => {
 
   const handleViewHOCS = async () => {
     try {
-      const res = await axios.get(
-        "https://chatwithpdf.in/rnb_callbackurl/hocs"
-      );
+      const res = await axios.get("https://chatwithpdf.in/rnb_callbackurl/hocs");
       setCurrentTableData(res.data.data);
       // setMvrFilter(HOCSFilter)
       setCurrentColumns(HOCS);
@@ -218,7 +209,6 @@ const Table = () => {
   const handleViewIssue = async () => {
     try {
       const res = await axios.get("http://localhost:3001/issues");
-      // console.log(toString(res.data.data)+"handleViewIssue");
       setCurrentTableData(res.data.data);
       // setMvrFilter(HOCSFilter)
       setCurrentColumns(ISSUES);
@@ -230,10 +220,9 @@ const Table = () => {
     }
   };
 
-  console.log(currentAuditTableData, "currentTableData");
-
   return (
     <div className="sidebar-and-table">
+
       <SideBar
         handleViewMVRS={handleViewMVRS}
         handleViewaudit={handleViewaudit}
@@ -242,6 +231,7 @@ const Table = () => {
         handleViewHOCS={handleViewHOCS}
         handleViewIssue={handleViewIssue}
       />
+
       <div className="table-users">
         <div className="header">Admin</div>
 
@@ -265,7 +255,7 @@ const Table = () => {
                 <td>{val?.employerNumber}</td>
                 <td>{val?.companyName}</td>
                 <td>
-                  <button onClick={handleBranch}>View Branch's </button>
+                  <button onClick={handleBranch}>View Branch&apos;s </button>
                 </td>
                 <td>{val?.countryName}</td>
                 <td>{val?.regionName}</td>
@@ -317,17 +307,20 @@ const Table = () => {
               </span>
             </div> */}
 
-            {modalType === "employee" && (
-              <EmployeeTable selectedRow={selectedRow} />
-            )}
+            {modalType === "employee" && <EmployeeTable selectedRow={selectedRow} />}
+
             <div style={{ marginLeft: "2rem", overflow: "auto" }}>
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "brown" }}>
-                  <TabList
-                    onChange={handleChange}
-                  >
-                    <Tab label="Audit" value="1" />
-                    <Tab label="MVRS Summary" value="2" />
+                  <TabList onChange={handleChange}>
+                    <Tab
+                      label="Audit"
+                      value="1"
+                    />
+                    <Tab
+                      label={tableTitle}
+                      value="2"
+                    />
                   </TabList>
                 </Box>
                 <TabPanel value="1">
@@ -341,7 +334,6 @@ const Table = () => {
                       />
                     )}
                   </span>
-
                 </TabPanel>
                 <TabPanel value="2">
                   {" "}
@@ -352,7 +344,6 @@ const Table = () => {
                       title={tableTitle}
                       from={from}
                       to={to}
-
                     />
                   )}
                 </TabPanel>

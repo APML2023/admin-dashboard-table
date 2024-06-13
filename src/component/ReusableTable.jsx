@@ -75,7 +75,6 @@ const ReusableTable = ({ data, column, title }) => {
   const { cobj } = useGetCount(data)
   const [sortedData, setSortedData] = useState([]);
 
-  console.log(title, "title")
   useEffect(() => {
 
     if (title == "AUDIT") {
@@ -114,7 +113,6 @@ const ReusableTable = ({ data, column, title }) => {
 
       uniqueArray.sort((a, b) => b.days - a.days);
       setSortedData(uniqueArray)
-      console.log(uniqueArray, "uniqueArray");
     } else {
       const sorted = [...data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setSortedData(sorted);
@@ -126,7 +124,6 @@ const ReusableTable = ({ data, column, title }) => {
   
 
   const totalCount = sortedData.length
-  console.log(sortedData, "finalcoumn")
   return (
     <div className='w-full '>
       {
@@ -145,7 +142,6 @@ const ReusableTable = ({ data, column, title }) => {
               <tbody>
                 {
                   sortedData.map((v, i) => {
-                    console.log(v, "ggg")
                     return <tr key={i}>
                       {
                         column.map((c, i) => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import SkeletonLoading from '../features/SkeletonLoading';
 
-const EmployeeTable = ({selectedRow,}) => {
+const EmployeeTable = ({ selectedRow }) => {
     const [employee, setEmployee] = useState([]);
 
       useEffect(()=>{
@@ -10,7 +10,6 @@ const EmployeeTable = ({selectedRow,}) => {
           axios.get("https://chatwithpdf.in/rnb_callbackurl/employees/"+selectedRow._id)
           .then((res) =>{
             setEmployee(res?.data?.data)
-            console.log(res.data)
           })
           .catch((err) =>{console.log(err);})
         }
