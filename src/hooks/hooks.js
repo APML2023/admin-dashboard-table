@@ -55,8 +55,6 @@ export const useGetCount = (data) => {
         if (Number(e?.adherenceToOperationalStandards) == 0) atos++
     });
 
-
-
     cobj = [
         { key: "shelvesTemperature", value: st, },
         { key: "freshnessOfGoods", value: fg, },

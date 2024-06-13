@@ -21,7 +21,8 @@ import {
   auditcolumn,
 } from "./Data";
 import SideBar from "./SideBar";
-import MvrTable from "./MvrTable";
+// import MvrTable from "./MvrTable";
+import ChecklistTable from "./ChecklistTable";
 
 const Table = () => {
   const [employers, setEmployers] = useState([]);
@@ -115,7 +116,7 @@ const Table = () => {
       { heading: "Range", value: "range" },
     ]);
     setTableTitle("Branches");
-    setModalType("table");
+    // setModalType("table");
     setOpen(true);
   };
 
@@ -153,7 +154,7 @@ const Table = () => {
       // setMvrFilter(MVRSFilter);
       setSecondCurrentColumn(auditcolumn);
       setsecondTableTitle("AUDIT");
-      setModalType("table");
+      // setModalType("table");
       // setModalType('mvrTable');
       setOpen(true);
     } catch (err) {
@@ -171,7 +172,7 @@ const Table = () => {
       setMvrFilter(KOCSFilter);
       setCurrentColumns(KOCS);
       setTableTitle("KOCS");
-      setModalType("table");
+      setModalType("kocsTable");
       setOpen(true);
     } catch (err) {
       console.log(err);
@@ -185,7 +186,7 @@ const Table = () => {
       setMvrFilter(HSOSFilter);
       setCurrentColumns(HSOS);
       setTableTitle("HSOS");
-      setModalType("table");
+      setModalType("hsosTable");
       setOpen(true);
     } catch (err) {
       console.log(err);
@@ -199,7 +200,7 @@ const Table = () => {
       // setMvrFilter(HOCSFilter)
       setCurrentColumns(HOCS);
       setTableTitle("HOCS");
-      setModalType("table");
+      setModalType("hocsTable");
       setOpen(true);
     } catch (err) {
       console.log(err);
@@ -222,7 +223,6 @@ const Table = () => {
 
   return (
     <div className="sidebar-and-table">
-
       <SideBar
         handleViewMVRS={handleViewMVRS}
         handleViewaudit={handleViewaudit}
@@ -323,29 +323,38 @@ const Table = () => {
                     />
                   </TabList>
                 </Box>
+
                 <TabPanel value="1">
                   {" "}
                   <span style={{ overflow: "auto" }}>
-                    {modalType === "table" && (
-                      <ReusableTable
-                        data={currentAuditTableData}
-                        column={secondCurrentColumn}
-                        title={secondTableTitle}
-                      />
-                    )}
+                    {/* {modalType === "table" && ( */}
+                    <ReusableTable
+                      data={currentAuditTableData}
+                      column={secondCurrentColumn}
+                      title={secondTableTitle}
+                    />
+                    {/* )} */}
                   </span>
                 </TabPanel>
                 <TabPanel value="2">
                   {" "}
-                  {modalType === "table" && (
-                    <MvrTable
+                  <ChecklistTable
+                    data={currentTableDataFiltered}
+                    column={currentColumns}
+                    title={tableTitle}
+                    from={from}
+                    to={to}
+                    modalType={modalType}
+                  />
+                  {/* {modalType === "mvrTable" && (
+                    <MvrTable 
                       data={currentTableDataFiltered}
                       column={currentColumns}
                       title={tableTitle}
                       from={from}
                       to={to}
                     />
-                  )}
+                  )} */}
                 </TabPanel>
               </TabContext>
             </div>
