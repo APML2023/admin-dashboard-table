@@ -64,7 +64,7 @@ export const MVRS = [
 
   export const  auditcolumn = [
 
-    { heading: "Shope name", value: "shopName" },
+    { heading: "Shop Name", value: "shopName" },
     { heading: "No of audit", value: "count" },
     { heading: "No of Days", value: "days" },
  

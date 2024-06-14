@@ -72,6 +72,8 @@ import ReusableContainer from './ReusableContainer';
 import { useGetCount } from '../hooks/hooks';
 
 const ReusableTable = ({ data, column, title }) => {
+  //return "";
+
   const { cobj } = useGetCount(data)
   const [sortedData, setSortedData] = useState([]);
 
@@ -120,10 +122,11 @@ const ReusableTable = ({ data, column, title }) => {
 
   }, [data]);
 
-
+  console.log({ sortedData, column, title}, "in audit table")
   
 
   const totalCount = sortedData.length
+
   return (
     <div className='w-full '>
       {
@@ -134,10 +137,26 @@ const ReusableTable = ({ data, column, title }) => {
             </div>
             <table className='w-full overflow-auto' cellSpacing="0">
               <thead className='table-head'>
-
                 <tr>
-                  {column.map((item, index) => <TableHeadingColumn data={sortedData} key={index} item={item} cobj={cobj} />)}
+                  <th>Shop Name</th>
+                  <th colSpan="3">
+                    Announced
+                  </th>
+                  <th colSpan="3">
+                    UnAnnounced
+                  </th>
                 </tr>
+                <tr>
+                  <th></th>
+                  <th>Last Audit Mark</th>
+                  <th>No of Audit</th>
+                  <th>No of Days</th>
+                  <th>Last Audit Mark</th>
+                  <th>No of Audit</th>
+                  <th>No of Days</th>
+                  {/* {column.map((item, index) => <TableHeadingColumn data={sortedData} key={index} item={item} cobj={cobj} />)} */}
+                </tr>
+                
               </thead>
               <tbody>
                 {

@@ -189,7 +189,7 @@ const SideBar = ({
         fontWeight: "bold"  
       }} className="dropdown">
         <Dropdown.Item onClick={() => {
-          handleButtonClick(handleViewaudit, 3);
+          // handleButtonClick(handleViewaudit, 3);
           handleButtonClick(handleViewHSOS, 3);
         }}>{loadingIndex === 3 ? (
           <img
@@ -208,7 +208,7 @@ const SideBar = ({
           handleViewaudit()
         }}>Customer Care</Dropdown.Item> */}
         <Dropdown.Item onClick={() => {
-          handleButtonClick(handleViewaudit, 2);
+          // handleButtonClick(handleViewaudit, 2);
           handleButtonClick(handleViewHOCS, 2);
         }}>{loadingIndex === 2 ? (
           <img
@@ -224,7 +224,7 @@ const SideBar = ({
           "Hygiene"
         )}</Dropdown.Item>
         <Dropdown.Item onClick={() => {
-          handleButtonClick(handleViewaudit, 1);
+          // handleButtonClick(handleViewaudit, 1);
           handleButtonClick(handleViewKOCS, 1);
         }}>{loadingIndex === 1 ? (
           <img

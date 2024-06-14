@@ -313,10 +313,12 @@ const Table = () => {
               <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: "brown" }}>
                   <TabList onChange={handleChange}>
+                  {modalType === "mvrTable" && (
                     <Tab
                       label="Audit"
                       value="1"
                     />
+                  )}
                     <Tab
                       label={tableTitle}
                       value="2"
@@ -327,13 +329,13 @@ const Table = () => {
                 <TabPanel value="1">
                   {" "}
                   <span style={{ overflow: "auto" }}>
-                    {/* {modalType === "table" && ( */}
+                    {modalType === "mvrTable" && (
                     <ReusableTable
                       data={currentAuditTableData}
                       column={secondCurrentColumn}
                       title={secondTableTitle}
                     />
-                    {/* )} */}
+                    )}
                   </span>
                 </TabPanel>
                 <TabPanel value="2">
