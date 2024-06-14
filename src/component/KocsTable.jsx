@@ -1,20 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 
 import SkeletonLoading from "../features/SkeletonLoading";
 
-const KocsTable = ({ column, title, data, from, to }) => {
-  const [isExpandOpions, setIsExpandOptions] = useState(false);
-  const [isExpandService, setIsExpandService] = useState(false);
-  const [isExpandVisibility, setIsExpandVisibility] = useState(false);
-  const [isExpandKnowledge, setIsExpandKnowledge] = useState(false);
-  const [isExpandMarketing, setIsExpandMarketing] = useState(false);
-  const [isExpandTraining, setIsExpandTraining] = useState(false);
-  const [sortedData, setSortedData] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-
-  console.log({ data }, "koc data in table");
+const KocsTable = ({ column, title, data }) => {
+  const [, setSearchInput] = useState("");
 
   return (
     <div className="w-full ">
