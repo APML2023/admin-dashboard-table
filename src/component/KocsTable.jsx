@@ -16,6 +16,18 @@ const KocsTable = ({ column, title, data, from, to }) => {
 
   console.log({ data }, "koc data in table");
 
+  data.forEach((d, i) => {
+    let marks = 0
+
+    Object.values(d).forEach(v => {
+      if (v === "Yes") {
+        marks += 1
+      } 
+    })
+
+    data[i].marks = marks    
+  })
+
   return (
     <div className="w-full ">
       <div className="header">{title}</div>
@@ -41,6 +53,7 @@ const KocsTable = ({ column, title, data, from, to }) => {
                   <th>Created At</th>
                   <th>Shop Name</th>
                   <th>Trainee Name</th>
+                  <th>Marks Obtained</th>
                   <th>Full Form of BOE and LSM</th>
                   <th>Impact of BOE and LSM</th>
                   <th>Accountable for BOE and LSM Activities</th>
@@ -69,6 +82,7 @@ const KocsTable = ({ column, title, data, from, to }) => {
                       <td>{d.createdAt.split("T")[0]}</td>
                       <td>{d.branchName}</td>
                       <td>{d.traineeName}</td>
+                      <td>{d.marks}</td>
                       <td>{d.fullFormOfBoeandLSM}</td>
                       <td>{d.impactOfBoeAndLsm}</td>
                       <td>{d.accountableOfBoeAndLsm}</td>
