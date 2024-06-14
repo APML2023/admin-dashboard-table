@@ -7,6 +7,25 @@ import SkeletonLoading from "../features/SkeletonLoading";
 const HsosTable = ({ column, title, data }) => {
   const [, setSearchInput] = useState("");
 
+  data.forEach((d, i) => {
+    let marks = 0
+    let count = 0
+
+    Object.values(d).forEach(v => {
+      if (v === "Yes") {
+        marks++
+        count++
+      } else if (v === "No") {
+        count++
+      }
+    })
+
+    data[i].marks = marks    
+    data[i].percent = (marks / count * 100).toFixed(2)
+  })
+
+  data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <div className="w-full ">
       <div className="header">{title}</div>
@@ -32,6 +51,7 @@ const HsosTable = ({ column, title, data }) => {
                   <th>Created At</th>
                   <th>Shop Name</th>
                   <th>Trainee Name</th>
+                  <th>Marks Obtained</th>
                   <th>Grooming</th>
                   <th>Products are stocked</th>
                   <th>Equipments are all working</th>
@@ -67,6 +87,7 @@ const HsosTable = ({ column, title, data }) => {
                       <td>{d.createdAt.split("T")[0]}</td>
                       <td>{d.branchName}</td>
                       <td>{d.traineeName}</td>
+                      <td>{d.marks} | {d.percent}%</td>
                       <td>{d.grooming}</td>
                       <td>{d.stocked}</td>
                       <td>{d.equipments}</td>

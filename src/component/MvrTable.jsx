@@ -107,6 +107,8 @@ const MvrTable = ({ column, title, data, from, to }) => {
     setSortedData(sorted);
   }, [isExpandOpions, from, to, data]);
 
+  finalData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
     <div className="w-full ">
       <div className="header">{title}</div>

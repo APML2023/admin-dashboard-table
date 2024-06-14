@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+// import { PrimeReactProvider } from 'primereact/api';
+
 
 import '../src/style/App.css'
 import '../src/style/Table.css'
@@ -20,12 +22,16 @@ const App = () => {
   
   return (
     <div>
+              {/* <PrimeReactProvider> */}
+
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Login/>} />
           <Route path="/home" element={<Table/>} />
         </Routes>
       </BrowserRouter>
+      {/* </PrimeReactProvider> */}
+
     </div>
   );
 };

@@ -9,15 +9,22 @@ const KocsTable = ({ column, title, data }) => {
 
   data.forEach((d, i) => {
     let marks = 0
+    let count = 0
 
     Object.values(d).forEach(v => {
       if (v === "Yes") {
-        marks += 1
-      } 
+        marks++
+        count++
+      } else if (v === "No") {
+        count++
+      }
     })
 
     data[i].marks = marks    
+    data[i].percent = (marks / count * 100).toFixed(2)
   })
+
+  data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
     <div className="w-full ">
@@ -73,7 +80,7 @@ const KocsTable = ({ column, title, data }) => {
                       <td>{d.createdAt.split("T")[0]}</td>
                       <td>{d.branchName}</td>
                       <td>{d.traineeName}</td>
-                      <td>{d.marks}</td>
+                      <td>{d.marks} | {d.percent}%</td>
                       <td>{d.fullFormOfBoeandLSM}</td>
                       <td>{d.impactOfBoeAndLsm}</td>
                       <td>{d.accountableOfBoeAndLsm}</td>
