@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import SkeletonLoading from "../features/SkeletonLoading";
 import { useGetCount } from "../hooks/hooks";
@@ -13,7 +14,7 @@ const MvrTable = ({ column, title, data, from, to }) => {
   const [sortedData, setSortedData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
-  const { cobj, totalCount } = useGetCount(data);
+  const { cobj } = useGetCount(data);
   let st = 0;
   let fg = 0;
   let vog = 0;
