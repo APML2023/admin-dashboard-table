@@ -135,23 +135,21 @@ const ReusableTable = ({ data, column, title }) => {
 
   const auditReport = {};
 
-  // console.log({ data })
   data.forEach((data) => {
-    // console.log( auditReport[data.shopName])
     if (auditReport[data.shopName]) {
 
       const count = auditReport[data.shopName].count
 
-
       if (new Date(auditReport[data.shopName].createdAt) < new Date(data.createdAt)) {
         auditReport[data.shopName] = {
           createdAt: data.createdAt,
-          marks: Object.values(data).reduce((acc, curr) => {
-            const mark = Number(curr)
-  
-            if (!isNaN(mark)) return acc + mark
-            else return 0
-          }, 0),
+          marks: Object.values(data).map(d => {
+            const mark = Number(d)
+
+            if (isNaN(mark) || mark > 5) return 0
+
+            return mark
+          }).reduce((accumulator, currentValue) => accumulator + currentValue, 0),
           type: data.announcedUnAnnounced,
           count
         }
@@ -161,12 +159,13 @@ const ReusableTable = ({ data, column, title }) => {
     } else {
       auditReport[data.shopName] = {
         createdAt: data.createdAt,
-        marks: Object.values(data).reduce((acc, curr) => {
-          const mark = Number(curr)
+        marks: Object.values(data).map(d => {
+          const mark = Number(d)
 
-          if (!isNaN(mark)) return acc + mark
-          else return 0
-        }, 0),
+          if (isNaN(mark) || mark > 5) return 0
+
+          return mark
+        }).reduce((accumulator, currentValue) => accumulator + currentValue, 0),
         type: data.announcedUnAnnounced,
         count: 1
       }
