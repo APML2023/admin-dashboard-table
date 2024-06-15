@@ -135,23 +135,29 @@ const ReusableTable = ({ data, column, title }) => {
 
   const auditReport = {};
 
-  sortedData.forEach((data) => {
+  // console.log({ data })
+  data.forEach((data) => {
+    // console.log( auditReport[data.shopName])
     if (auditReport[data.shopName]) {
+
       const count = auditReport[data.shopName].count
-      if (new Date(auditReport[data.shopName].createdAt) < (data.createdAt)) {
+
+
+      if (new Date(auditReport[data.shopName].createdAt) < new Date(data.createdAt)) {
         auditReport[data.shopName] = {
           createdAt: data.createdAt,
-          marks: Object.values(data).reduce(acc, curr, () => {
+          marks: Object.values(data).reduce((acc, curr) => {
             const mark = Number(curr)
   
             if (!isNaN(mark)) return acc + mark
             else return 0
           }, 0),
-          type: data.announcedUnAnnounced
+          type: data.announcedUnAnnounced,
+          count
         }
       }
 
-      auditReport[data.shopName].count++
+      auditReport[data.shopName].count = count + 1
     } else {
       auditReport[data.shopName] = {
         createdAt: data.createdAt,
