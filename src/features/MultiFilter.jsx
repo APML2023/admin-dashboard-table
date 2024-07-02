@@ -50,7 +50,7 @@ const MultiFilter = ({ setFilter, data, filter, setFrom, setTo }) => {
                 key={index}
               >
                 <h4>{val.name ? val.name : "Please Add Name in Filter"} </h4>
-
+                
                 {val.name == "Name" ? (
                   <select
                     name="Select"

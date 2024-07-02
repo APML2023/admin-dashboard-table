@@ -135,6 +135,24 @@ export const KOCSFilter = [
     key: "traineeName",
     val: null,
     type: "string"
+  },
+  {
+    name: "Shop", 
+    key: "shopName",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "From", 
+    key: "createdAt",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "To", 
+    key: "updatedAt",
+    val: null,
+    type: "string"
   }
 ]
 
@@ -171,6 +189,25 @@ export const HSOSFilter = [
   {
     name: "Trainee", 
     key: "traineeName",
+    val: null,
+    type: "string"
+  },
+  
+  {
+    name: "Shop", 
+    key: "shopName",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "From", 
+    key: "createdAt",
+    val: null,
+    type: "string"
+  },
+  {
+    name: "To", 
+    key: "updatedAt",
     val: null,
     type: "string"
   }

@@ -4,6 +4,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import Logo from "../assets/rnblogo.png";
 import axios from "axios";
 
 import EmployeeTable from "./employeeTable";
@@ -232,8 +233,9 @@ const Table = () => {
         handleViewIssue={handleViewIssue}
       />
 
-      <div className="table-users">
-        <div className="header">Admin</div>
+      <div className="table-users" style={{display: 'flex', justifyContent: 'right'}}>
+        <img src={Logo} style={{width: '100vw', height: '80vh'}} />
+        {/* <div className="header">Admin</div>
 
         <table cellSpacing="0">
           <thead>
@@ -272,7 +274,7 @@ const Table = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
         {/* edhar table ki ui thik kar   */}
         {open && (
           <Modal

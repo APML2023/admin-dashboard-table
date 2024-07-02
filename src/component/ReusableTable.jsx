@@ -172,6 +172,120 @@ const ReusableTable = ({ data, column, title }) => {
     }
   });
 
+  const tr = data.map((el) => {
+    return Number(el.customerGreeting == "N/A" ? 0 : el.customerGreeting) +
+    Number(el.knowledgeOfProducts == "N/A" ? 0 : el.knowledgeOfProducts) +
+    Number(
+      el.convincingCustomerForPhoneNumber == "N/A"
+        ? 0
+        : el.convincingCustomerForPhoneNumber
+    ) +
+    Number(
+      el.handlingCustomerComplaintsAndInquiries == "N/A"
+        ? 0
+        : el.handlingCustomerComplaintsAndInquiries
+    ) +
+    Number(el.cleanlinessOfStore == "N/A" ? 0 : el.cleanlinessOfStore) +
+    Number(el.atmosphereAndDecor == "N/A" ? 0 : el.atmosphereAndDecor) +
+    Number(el.cleanExteriorSignage == "N/A" ? 0 : el.cleanExteriorSignage) +
+    Number(el.easeOfAccess == "N/A" ? 0 : el.easeOfAccess) +
+    Number(el.facadeMaintained == "N/A" ? 0 : el.facadeMaintained) +
+    Number(
+      el.understandingOfLocalMarket == "N/A" ? 0 : el.understandingOfLocalMarket
+    ) +
+    Number(el.crmActivities == "N/A" ? 0 : el.crmActivities) +
+    Number(el.competitorAwareness == "N/A" ? 0 : el.competitorAwareness) +
+    Number(
+      el.executionOfPromotionalActivities == "N/A"
+        ? 0
+        : el.executionOfPromotionalActivities
+    ) +
+    Number(
+      el.strategiesToUpsellAndCrossSell == "N/A"
+        ? 0
+        : el.strategiesToUpsellAndCrossSell
+    ) +
+    Number(el.initiativeAtLocalLevel == "N/A" ? 0 : el.initiativeAtLocalLevel) +
+    Number(el.kocFiled == "N/A" ? 0 : el.kocFiled) +
+    Number(
+      el.minimizationOfWastageProducts == "N/A"
+        ? 0
+        : el.minimizationOfWastageProducts
+    ) +
+    Number(
+      el.optimizationOfProductMix == "N/A" ? 0 : el.optimizationOfProductMix
+    ) +
+    Number(
+      el.managementOfOnlineSales == "N/A" ? 0 : el.managementOfOnlineSales
+    ) +
+    Number(
+      el.adherenceToOperationalStandards == "N/A"
+        ? 0
+        : el.adherenceToOperationalStandards
+    )
+  })
+
+
+  const hello = (el) => {
+    const res = data.filter((el2) => el2.shopName == el);
+    console.log("💥", el, res);
+  
+    const res2 = res.map((d) => {
+      return (Number(d.customerGreeting == "N/A" ? 0 : d.customerGreeting) +
+        Number(d.knowledgeOfProducts == "N/A" ? 0 : d.knowledgeOfProducts) +
+        Number(
+          d.convincingCustomerForPhoneNumber == "N/A"
+            ? 0
+            : d.convincingCustomerForPhoneNumber
+        ) +
+        Number(
+          d.handlingCustomerComplaintsAndInquiries == "N/A"
+            ? 0
+            : d.handlingCustomerComplaintsAndInquiries
+        ) +
+        Number(d.cleanlinessOfStore == "N/A" ? 0 : d.cleanlinessOfStore) +
+        Number(d.atmosphereAndDecor == "N/A" ? 0 : d.atmosphereAndDecor) +
+        Number(d.cleanExteriorSignage == "N/A" ? 0 : d.cleanExteriorSignage) +
+        Number(d.easeOfAccess == "N/A" ? 0 : d.easeOfAccess) +
+        Number(d.facadeMaintained == "N/A" ? 0 : d.facadeMaintained) +
+        Number(
+          d.understandingOfLocalMarket == "N/A" ? 0 : d.understandingOfLocalMarket
+        ) +
+        Number(d.crmActivities == "N/A" ? 0 : d.crmActivities) +
+        Number(d.competitorAwareness == "N/A" ? 0 : d.competitorAwareness) +
+        Number(
+          d.executionOfPromotionalActivities == "N/A"
+            ? 0
+            : d.executionOfPromotionalActivities
+        ) +
+        Number(
+          d.strategiesToUpsellAndCrossSell == "N/A"
+            ? 0
+            : d.strategiesToUpsellAndCrossSell
+        ) +
+        Number(d.initiativeAtLocalLevel == "N/A" ? 0 : d.initiativeAtLocalLevel) +
+        Number(d.kocFiled == "N/A" ? 0 : d.kocFiled) +
+        Number(
+          d.minimizationOfWastageProducts == "N/A"
+            ? 0
+            : d.minimizationOfWastageProducts
+        ) +
+        Number(
+          d.optimizationOfProductMix == "N/A" ? 0 : d.optimizationOfProductMix
+        ) +
+        Number(
+          d.managementOfOnlineSales == "N/A" ? 0 : d.managementOfOnlineSales
+        ) +
+        Number(
+          d.adherenceToOperationalStandards == "N/A"
+            ? 0
+            : d.adherenceToOperationalStandards
+        ));
+    });
+    
+    return res2[res2.length - 1];
+  };
+  
   return (
     <div className="w-full ">
       {sortedData.length && column ? (
@@ -181,8 +295,8 @@ const ReusableTable = ({ data, column, title }) => {
             <thead className="table-head">
               <tr>
                 <th>Shop Name</th>
-                <th colSpan="3">Announced</th>
                 <th colSpan="3">UnAnnounced</th>
+                <th colSpan="3">Announced</th>
               </tr>
               <tr>
                 <th></th>
@@ -216,7 +330,7 @@ const ReusableTable = ({ data, column, title }) => {
                 if (rep[1].type === "announced") {
                   return <tr>
                   <td>{rep[0]}</td>
-                  <td>-</td>
+                  <td>{hello(rep[0])}</td>
                   <td>-</td>
                   <td>-</td>
                   <td>{rep[1].marks}</td>

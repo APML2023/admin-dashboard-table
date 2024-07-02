@@ -26,6 +26,16 @@ const HsosTable = ({ column, title, data }) => {
 
   data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+  let avgOfMarks = [];
+  let avgOfPercents = [];
+
+  data.map((el) => {
+      avgOfMarks.push(el.marks);
+      avgOfPercents.push(Number(el.percent));
+  })
+  console.log(avgOfMarks, '📌📌', avgOfPercents)
+  const totalMarks = avgOfMarks.reduce((partialSum, a) => partialSum + a, 0);
+  const totalMarksPercentage = avgOfPercents.reduce((partialSum, a) => partialSum + a, 0);
 
   return (
     <div className="w-full ">
@@ -38,6 +48,7 @@ const HsosTable = ({ column, title, data }) => {
           placeholder="search here"
           onChange={(e) => setSearchInput(e.target.value)}
         />
+        <span style={{marginLeft: '12px', color: 'yellow'}}>{data.length} Records</span>
       </div>
 
       {column ? (
@@ -52,7 +63,7 @@ const HsosTable = ({ column, title, data }) => {
                   <th>Created At</th>
                   <th>Shop Name</th>
                   <th>Trainee Name</th>
-                  <th>Marks Obtained</th>
+                  <th>Marks Obtained {Math.floor(totalMarks/avgOfMarks.length)} | {Math.floor(totalMarksPercentage/avgOfPercents.length)}%</th>
                   <th>Uniform neat and clean</th>
                   <th>To Do defined and understood</th>
                   <th>Plan for the day is ready</th>

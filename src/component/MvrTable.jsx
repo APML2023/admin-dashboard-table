@@ -19,6 +19,7 @@ const MvrTable = ({ column, title, data, from, to }) => {
   let fg = 0;
   let vog = 0;
   let pop = 0;
+  
 
   let sht = data.forEach((e) => {
     if (Number(e?.shelvesTemperature) == 0) st++;
@@ -109,6 +110,74 @@ const MvrTable = ({ column, title, data, from, to }) => {
 
   finalData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
+
+  let avgOfQualityProduct = [];
+  let avgOfService = [];
+  let avgOfVisibility = [];
+  let avgOfKnowledge = [];
+  let avgOfMarketing = [];
+  let avgOfMarketing2 = [];
+
+  finalData.map((el) => {
+      avgOfQualityProduct.push(QualityProduct(el.shelvesTemperature == "N/A" ? 0 : el.shelvesTemperature,
+        el.freshnessOfGoods == "N/A" ? 0 : el.freshnessOfGoods , 
+        el.varietyOfGoods == "N/A" ? 0 : el.varietyOfGoods ,
+        el.presentationOfPackagingItems == "N/A" ? 0 : el.presentationOfPackagingItems));
+        
+      avgOfService.push(Service(
+        el.customerGreeting == "N/A" ? 0 : el.customerGreeting,
+        el.knowledgeOfProducts == "N/A" ? 0 : el.knowledgeOfProducts,
+        el.convincingCustomerForPhoneNumber == "N/A"
+          ? 0
+          : el.convincingCustomerForPhoneNumber,
+        el.handlingCustomerComplaintsAndInquiries == "N/A"
+          ? 0
+          : el.handlingCustomerComplaintsAndInquiries,
+        el.cleanlinessOfStore == "N/A" ? 0 : el.cleanlinessOfStore,
+        el.atmosphereAndDecor == "N/A" ? 0 : el.atmosphereAndDecor
+      ));
+
+      avgOfVisibility.push(Visibility(
+        el.cleanExteriorSignage == "N/A" ? 0 : el.cleanExteriorSignage,
+        el.easeOfAccess == "N/A" ? 0 : el.easeOfAccess,
+        el.facadeMaintained == "N/A" ? 0 : el.facadeMaintained
+      ));
+
+      avgOfKnowledge.push(Knowledge(
+        el.understandingOfLocalMarket == "N/A" ? 0 : el.understandingOfLocalMarket,
+        el.crmActivities == "N/A" ? 0 : el.crmActivities,
+        el.competitorAwareness == "N/A" ? 0 : el.competitorAwareness
+      ));
+
+      avgOfMarketing.push(Marketing(
+        el.executionOfPromotionalActivities == "N/A"
+          ? 0
+          : el.executionOfPromotionalActivities
+      ));
+
+      avgOfMarketing2.push(Marketing(
+        el.strategiesToUpsellAndCrossSell == "N/A"
+          ? 0
+          : el.strategiesToUpsellAndCrossSell,
+        el.initiativeAtLocalLevel == "N/A" ? 0 : el.initiativeAtLocalLevel,
+        el.kocFiled == "N/A" ? 0 : el.kocFiled,
+        el.minimizationOfWastageProducts == "N/A"
+          ? 0
+          : el.minimizationOfWastageProducts,
+        el.optimizationOfProductMix == "N/A" ? 0 : el.optimizationOfProductMix,
+        el.managementOfOnlineSales == "N/A" ? 0 : el.managementOfOnlineSales,
+        el.adherenceToOperationalStandards == "N/A"
+          ? 0
+          : el.adherenceToOperationalStandards
+      ));
+})
+const total = avgOfQualityProduct.reduce((partialSum, a) => partialSum + a, 0);
+const totalAvgOfService = avgOfService.reduce((partialSum, a) => partialSum + a, 0);
+const totalAvgOfVisibility = avgOfVisibility.reduce((partialSum, a) => partialSum + a, 0);
+const totalAvgOfKnowledge = avgOfKnowledge.reduce((partialSum, a) => partialSum + a, 0);
+const totalAvgOfMarketing = avgOfMarketing.reduce((partialSum, a) => partialSum + a, 0);
+const totalAvgOfMarketing2 = avgOfMarketing2.reduce((partialSum, a) => partialSum + a, 0);
+
   return (
     <div className="w-full ">
       <div className="header">{title}</div>
@@ -119,6 +188,7 @@ const MvrTable = ({ column, title, data, from, to }) => {
           placeholder="search here"
           onChange={(e) => setSearchInput(e.target.value)}
         />
+        <span style={{marginLeft: '12px', color: 'yellow'}}>{finalData.length} Records</span>
       </div>
       {column ? (
         <div className="table-users">
@@ -144,7 +214,8 @@ const MvrTable = ({ column, title, data, from, to }) => {
                   <th>Total 100</th>
 
                   <th>
-                    Quality products {TotalQualityProduct}{" "}
+                    {/* Quality products {TotalQualityProduct}{" "} {(Math.ceil(total/avgOfQualityProduct.length))} */}
+                    Quality products {(Math.floor(total/avgOfQualityProduct.length))}
                     <input
                       onClick={() => setIsExpandOptions(!isExpandOpions)}
                       type="checkbox"
@@ -193,7 +264,8 @@ const MvrTable = ({ column, title, data, from, to }) => {
                   )}
 
                   <th>
-                    Service To The Customer {TotalService}{" "}
+                    {/* Service To The Customer {TotalService}{" "}  */}
+                    Service To The Customer {(Math.floor(totalAvgOfService/avgOfService.length))}{" "} 
                     <input
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
@@ -264,8 +336,10 @@ const MvrTable = ({ column, title, data, from, to }) => {
                   )}
 
                   <th>
+                    {/* Visibility And Accessibility
+                    <br /> of the shop {TotalVisi}{" "} */}
                     Visibility And Accessibility
-                    <br /> of the shop {TotalVisi}{" "}
+                    <br /> of the shop {(Math.floor(totalAvgOfVisibility/avgOfVisibility.length))}{" "}
                     <input
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
@@ -304,8 +378,10 @@ const MvrTable = ({ column, title, data, from, to }) => {
                   )}
 
                   <th>
+                    {/* Knowledge of Trading area <br />
+                    and CRM Activities {TotalKnow}{" "} */}
                     Knowledge of Trading area <br />
-                    and CRM Activities {TotalKnow}{" "}
+                    and CRM Activities {(Math.floor(totalAvgOfKnowledge/avgOfKnowledge.length))}{" "}
                     <input
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
@@ -344,7 +420,8 @@ const MvrTable = ({ column, title, data, from, to }) => {
                   )}
 
                   <th>
-                    Marketing Collateral Management <br /> and Promotions {TotalMark}{" "}
+                    {/* Marketing Collateral Management <br /> and Promotions {TotalMark}{" "} */}
+                    Marketing Collateral Management <br /> and Promotions {(Math.floor(totalAvgOfMarketing/avgOfMarketing.length))}{" "}
                     <input
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
@@ -364,8 +441,10 @@ const MvrTable = ({ column, title, data, from, to }) => {
                   )}
 
                   <th>
+                    {/* Training And Sales
+                    <br /> Building Activities {Totaltrain}{" "} */}
                     Training And Sales
-                    <br /> Building Activities {Totaltrain}{" "}
+                    <br /> Building Activities {(Math.floor(totalAvgOfMarketing2/avgOfMarketing2.length))}{" "}
                     <input
                       type="checkbox"
                       style={{ width: "20px", height: "20px" }}
